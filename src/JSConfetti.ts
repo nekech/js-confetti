@@ -167,7 +167,7 @@ class JSConfetti {
         confettiNumber,
         emojis,
         emojiSize,
-        canvasWidth,
+        canvasWidth
       })
 
       const confettiOnTheLeft = new ConfettiShape({
@@ -178,7 +178,7 @@ class JSConfetti {
         confettiNumber,
         emojis,
         emojiSize,
-        canvasWidth,
+        canvasWidth
       })
 
       confettiGroup.addShapes(confettiOnTheRight, confettiOnTheLeft)

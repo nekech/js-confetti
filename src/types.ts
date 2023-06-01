@@ -42,7 +42,7 @@ interface IAddConfettiConfig {
 
   // @deprecated: wrong plural forms were used
   emojies?: string[],
-  confettiesNumber?: number,
+  confettiesNumber?: number
 }
 
 

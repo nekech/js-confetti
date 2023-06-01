@@ -24,6 +24,8 @@ import {
   SHAPE_VISIBILITY_TRESHOLD,
 } from './consts'
 
+import {ShapeArgs, Shape} from './Shape'
+
 
 // For wide screens - fast confetti, for small screens - slow confetti
 function getWindowWidthCoefficient(canvasWidth: number) {
@@ -32,34 +34,18 @@ function getWindowWidthCoefficient(canvasWidth: number) {
   return Math.log(canvasWidth) / Math.log(HD_SCREEN_WIDTH)
 }
 
-interface TConstructorArgs extends INormalizedAddConfettiConfig {
+interface TConstructorArgs extends ShapeArgs {
   initialPosition: IPosition,
-  direction: TConfettiDirection,
-  canvasWidth: number,
+  direction: TConfettiDirection
 }
 
-class ConfettiShape {
-  private confettiSpeed: ISpeed
-  private rotationSpeed: number
-
+class ConfettiShape extends Shape {
   private dragForceCoefficient: number
   private finalConfettiSpeedX: number
-
-  private radius: IRadius
-  private readonly initialRadius: number
-  private readonly rotationAngle: number
-  private emojiSize: number
-  private emojiRotationAngle: number
 
   // We can calculate absolute cos and sin at shape init
   private readonly absCos: number
   private readonly absSin: number
-
-  private initialPosition: IPosition
-  private currentPosition: IPosition
-
-  private readonly color: string | null
-  private readonly emoji: string | null
 
   private radiusYUpdateDirection: 'up' | 'down'
 
@@ -77,6 +63,9 @@ class ConfettiShape {
       emojiSize,
       canvasWidth,
     } = args
+
+    super(args)
+  
     const randomConfettiSpeed = generateRandomNumber(MIN_INITIAL_CONFETTI_SPEED, MAX_INITIAL_CONFETTI_SPEED, 3)
     const initialSpeed = randomConfettiSpeed * getWindowWidthCoefficient(canvasWidth)
 
@@ -87,17 +76,7 @@ class ConfettiShape {
 
     this.finalConfettiSpeedX = generateRandomNumber(MIN_FINAL_X_CONFETTI_SPEED, MAX_FINAL_X_CONFETTI_SPEED, 3)
 
-    this.rotationSpeed = emojis.length ? 0.01 : generateRandomNumber(MIN_INITIAL_ROTATION_SPEED, MAX_INITIAL_ROTATION_SPEED, 3) * getWindowWidthCoefficient(canvasWidth)
-
     this.dragForceCoefficient = generateRandomNumber(MIN_DRAG_FORCE_COEFFICIENT, MAX_DRAG_FORCE_COEFFICIENT, 6)
-
-    this.radius = {
-      x: confettiRadius, y: confettiRadius
-    }
-    this.initialRadius = confettiRadius
-    this.rotationAngle = direction === 'left'  ? generateRandomNumber(0, 0.2, 3) : generateRandomNumber(-0.2, 0, 3)
-    this.emojiSize = emojiSize
-    this.emojiRotationAngle = generateRandomNumber(0, 2 * Math.PI)
 
     this.radiusYUpdateDirection = 'down'
 
@@ -117,9 +96,6 @@ class ConfettiShape {
 
     this.currentPosition = { ...shiftedInitialPosition }
     this.initialPosition = { ...shiftedInitialPosition }
-
-    this.color = emojis.length ? null : generateRandomArrayElement(confettiColors)
-    this.emoji = emojis.length ? generateRandomArrayElement(emojis) : null
 
     this.createdAt = new Date().getTime()
     this.direction = direction
@@ -208,10 +184,6 @@ class ConfettiShape {
         this.radiusYUpdateDirection = 'down'
       }
     }
-  }
-
-  getIsVisibleOnCanvas(canvasHeight: number): boolean {
-    return this.currentPosition.y < canvasHeight + SHAPE_VISIBILITY_TRESHOLD
   }
 }
 
