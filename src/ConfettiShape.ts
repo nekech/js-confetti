@@ -49,8 +49,6 @@ class ConfettiShape extends Shape {
 
   private radiusYUpdateDirection: 'up' | 'down'
 
-  private readonly createdAt: number
-
   private readonly direction: TConfettiDirection
 
   constructor(args: TConstructorArgs) {
@@ -97,7 +95,6 @@ class ConfettiShape extends Shape {
     this.currentPosition = { ...shiftedInitialPosition }
     this.initialPosition = { ...shiftedInitialPosition }
 
-    this.createdAt = new Date().getTime()
     this.direction = direction
   }
 

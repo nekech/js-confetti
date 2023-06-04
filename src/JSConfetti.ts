@@ -1,5 +1,8 @@
 import { fixDPR } from './fixDPR'
 import { ConfettiShape } from './ConfettiShape'
+import { RainShape } from './RainShape'
+import { Shape } from './Shape'
+
 import { createCanvas } from './createCanvas'
 import { normalizeConfettiConfig } from './normalizeConfettiConfig'
 import { IPosition, IJSConfettiConfig, IAddConfettiConfig } from './types'
@@ -7,7 +10,7 @@ import { IPosition, IJSConfettiConfig, IAddConfettiConfig } from './types'
 class ConfettiBatch {
   private resolvePromise?: () => void
   private promise: Promise<void>
-  private shapes: ConfettiShape[]
+  private shapes: Shape[]
 
   constructor(private canvasContext: CanvasRenderingContext2D) {
     this.shapes = []
@@ -19,7 +22,7 @@ class ConfettiBatch {
     return this.promise
   }
 
-  addShapes(...shapes: ConfettiShape[]): void {
+  addShapes(...shapes: Shape[]): void {
     this.shapes.push(...shapes)
   }
 
@@ -167,7 +170,8 @@ class JSConfetti {
         confettiNumber,
         emojis,
         emojiSize,
-        canvasWidth
+        canvasWidth,
+        canvasHeight
       })
 
       const confettiOnTheLeft = new ConfettiShape({
@@ -178,10 +182,69 @@ class JSConfetti {
         confettiNumber,
         emojis,
         emojiSize,
-        canvasWidth
+        canvasWidth,
+        canvasHeight
       })
 
       confettiGroup.addShapes(confettiOnTheRight, confettiOnTheLeft)
+    }
+
+    this.activeConfettiBatches.push(confettiGroup)
+
+    this.queueAnimationFrameIfNeeded()
+
+    return confettiGroup.getBatchCompletePromise()
+  }
+
+  public addRain(confettiConfig: IAddConfettiConfig = {}): Promise<void> {
+    const {
+      confettiRadius,
+      confettiNumber,
+      confettiColors,
+      emojis,
+      emojiSize,
+    } = normalizeConfettiConfig(confettiConfig)
+
+    console.log("Add Rain")
+
+    // Use the bounding rect rather tahn the canvas width / height, because
+    // .width / .height are unset until a layout pass has been completed. Upon
+    // confetti being immediately queued on a page load, this hasn't happened so
+    // the default of 300x150 will be returned, causing an improper source point
+    // for the confetti animation.
+    const canvasRect = this.canvas.getBoundingClientRect()
+    const canvasWidth = canvasRect.width
+    const canvasHeight = canvasRect.height
+
+    const yPosition = canvasHeight * 5 / 7
+
+
+    const confettiGroup = new ConfettiBatch(this.canvasContext)
+    var myconfettiNumber = 10 //TODO remove this line
+
+    function addRainLine(context: { activeConfettiBatches: ConfettiBatch[] })
+    {
+      console.log("Add Rain Line")
+      for (let i = 0; i < myconfettiNumber; i++) {
+        const confettiOnTheRight = new RainShape({
+          confettiRadius,
+          confettiColors,
+          confettiNumber,
+          emojis,
+          emojiSize,
+          canvasWidth,
+          canvasHeight
+        })
+
+        confettiGroup.addShapes(confettiOnTheRight)
+      }
+    }
+
+    var delay = (canvasHeight / 7) / 1 * 10
+
+    for (var i = 0; i < 15; i++)
+    {
+      setTimeout(addRainLine, i * delay, this);
     }
 
     this.activeConfettiBatches.push(confettiGroup)

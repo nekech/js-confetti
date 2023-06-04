@@ -26,6 +26,7 @@ import {
 
   interface ShapeArgs extends INormalizedAddConfettiConfig {
     canvasWidth: number
+    canvasHeight: number
   }
 
 abstract class Shape{
@@ -44,6 +45,10 @@ abstract class Shape{
     protected readonly color: string | null
     protected readonly emoji: string | null
 
+    protected readonly createdAt: number
+    protected readonly canvasWidth: number
+    protected readonly canvasHeight: number
+
     constructor(args: ShapeArgs) {
         const {
           confettiRadius,
@@ -51,7 +56,11 @@ abstract class Shape{
           emojis,
           emojiSize,
           canvasWidth,
+          canvasHeight
         } = args
+
+        this.canvasWidth = canvasWidth
+        this.canvasHeight = canvasHeight
         
         this.confettiSpeed = {
           x: 0,
@@ -75,9 +84,10 @@ abstract class Shape{
         this.initialPosition = {x : 0, y: 0}
         this.currentPosition = {x : 0, y: 0}
 
+        this.createdAt = new Date().getTime()
     }
 
-    abstract draw(canvasContext: CanvasRenderingContext2D): void;
+    abstract draw(canvasContext: CanvasRenderingContext2D): void; //TODO implement it's common for all shapes
 
     abstract updatePosition(iterationTimeDelta: number, currentTime: number): void;
 
