@@ -2,20 +2,13 @@
 <img src="assets/app-demo.gif" width="600px" />
 
 
-[![npm version](https://badge.fury.io/js/js-confetti.svg)](https://badge.fury.io/js/js-confetti)
-![NPM Downloads](https://img.shields.io/npm/dw/js-confetti)
-[![](https://data.jsdelivr.com/v1/package/npm/js-confetti/badge?style=rounded)](https://www.jsdelivr.com/package/npm/js-confetti)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/js-confetti)
-
 # 🎉 JavaScript Confetti library
 
-💥 Supports emojis as confetti<br/>
+💥 Supports emojis as confetti and rain<br/>
 ⚡️ Zero dependencies used<br/>
 🦄 Works without any config, yet configurable<br/>
 🛠 Has TypeScript typings<br/>
-🧩 Confetti speed adapts to user screen width
-
-Links: [GitHub](https://github.com/loonywizard/js-confetti) | [NPM](https://www.npmjs.com/package/js-confetti) | [Demo](https://loonywizard.github.io/js-confetti/)
+🧩 Confetti and Rain speed adapts to user screen width
 
 
 ## Install
