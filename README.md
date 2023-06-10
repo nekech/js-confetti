@@ -19,11 +19,6 @@ You can install library from NPM using yarn or npm
 yarn add js-confetti
 ```
 
-Alternatively you can download script from CDN
-```html
-<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-```
-
 and then access `JSConfetti` global variable
 
 ## Usage
