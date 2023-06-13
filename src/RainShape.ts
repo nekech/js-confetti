@@ -72,6 +72,7 @@ class RainShape extends Shape
 
           if (this.currentPosition.y > this.canvasHeight) {
             this.currentPosition.y = generateRandomNumber(0, 50)
+            this.currentPosition.x = generateRandomNumber(0, this.canvasWidth)
           }
 
         // no need to update rotation radius for emoji

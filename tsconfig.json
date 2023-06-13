@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
-    "target": "es2018",
+    "target": "ES2015",
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "outDir": "dist"
   }
 }

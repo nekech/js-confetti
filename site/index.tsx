@@ -8,10 +8,10 @@ import { IAddConfettiConfig } from '../src/types'
 
 const CONFETTI_ARGS: IAddConfettiConfig[] = [
   {},
-  { confettiRadius: 12, confettiNumber: 100 },
-  { emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'] },
-  { emojis: ['⚡️', '💥', '✨', '💫'] },
-  { emojis: ['🦄'], confettiRadius: 100, confettiNumber: 30 },
+  //{ confettiRadius: 12, confettiNumber: 100 },
+  { emojis: ['🌽', '🍇', '🍌', '🍒', '🐸', '🐳', '🎃', '🎾', '🌈', '🍦', '💁', '🔥', '😁', '😱', '🌴', '👏', '💃'] },
+  { emojis: ['🍕', '🍷', '🍭', '💖', '💩', '🐷'] },
+  //{ emojis: ['🦄',  '🌈', '🍭'], confettiRadius: 100, confettiNumber: 30 },
   {
     confettiColors: ['#ffbe0b', '#fb5607', '#ff006e', '#8338ec', '#3a86ff'],
     confettiRadius: 10,
@@ -26,7 +26,9 @@ const CONFETTI_ARGS: IAddConfettiConfig[] = [
 
 function App(): JSX.Element {
   const jsConfettiRef = useRef<JSConfetti>()
+  jsConfettiRef.current = new JSConfetti()
 
+  /*
   useEffect(() => {
     jsConfettiRef.current = new JSConfetti()
 
@@ -38,10 +40,12 @@ function App(): JSX.Element {
 
     return () => clearTimeout(timeoutId)
   }, [])
+*/
+
 
   const onButtonClick = useCallback(() => {
     if (jsConfettiRef.current) {
-      jsConfettiRef.current.addConfetti(generateRandomArrayElement(CONFETTI_ARGS)).then(() => console.log("Manual batch completed"))
+      jsConfettiRef.current.addRain(generateRandomArrayElement(CONFETTI_ARGS)).then(() => console.log("Manual batch completed"))
     }
   }, [jsConfettiRef])
 
