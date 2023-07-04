@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef } from 'react'
 
 import JSConfetti from '../src/index'
 import { generateRandomArrayElement  } from '../src/generateRandomArrayElement'
-import { IAddConfettiConfig } from '../src/types'
+import { IAddConfettiConfig, IAddRainConfig } from '../src/types'
 
 
 const CONFETTI_ARGS: IAddConfettiConfig[] = [
@@ -21,6 +21,24 @@ const CONFETTI_ARGS: IAddConfettiConfig[] = [
     confettiColors: ['#9b5de5', '#f15bb5', '#fee440', '#00bbf9', '#00f5d4'],
     confettiRadius: 6,
     confettiNumber: 300,
+  },
+]
+
+const RAIN_ARGS: IAddRainConfig[] = [
+  {},
+  { emojis: ['🌽', '🍇', '🍌', '🍒', '🐸', '🐳', '🎃', '🎾', '🌈', '🍦', '💁', '🔥', '😁', '😱', '🌴', '👏', '💃'], velocityY : 0.2 },
+  { emojis: ['🍕', '🍷', '🍭', '💖', '💩', '🐷'], velocityY : 0.2 },
+  {
+    confettiColors: ['#ffbe0b', '#fb5607', '#ff006e', '#8338ec', '#3a86ff'],
+    confettiRadius: 10,
+    confettiNumber: 150,
+    velocityY : 0.2
+  },
+  {
+    confettiColors: ['#9b5de5', '#f15bb5', '#fee440', '#00bbf9', '#00f5d4'],
+    confettiRadius: 6,
+    confettiNumber: 300,
+    velocityY : 0.2
   },
 ]
 
@@ -45,7 +63,7 @@ function App(): JSX.Element {
 
   const onButtonClick = useCallback(() => {
     if (jsConfettiRef.current) {
-      jsConfettiRef.current.addRain(generateRandomArrayElement(CONFETTI_ARGS)).then(() => console.log("Manual batch completed"))
+      jsConfettiRef.current.addRain(generateRandomArrayElement(RAIN_ARGS)).then(() => console.log("Manual batch completed"))
     }
   }, [jsConfettiRef])
 

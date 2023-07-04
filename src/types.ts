@@ -45,8 +45,13 @@ interface IAddConfettiConfig {
   confettiesNumber?: number
 }
 
+interface IAddRainConfig extends IAddConfettiConfig{
+  velocityY?: number
+}
+
 
 type INormalizedAddConfettiConfig = Required<Omit<IAddConfettiConfig, 'emojies' | 'confettiesNumber'>>
+type INormalizedAddRainConfig = Required<Omit<IAddRainConfig, 'emojies' | 'confettiesNumber'>>
 
 
 export {
@@ -57,4 +62,6 @@ export {
   IJSConfettiConfig,
   IAddConfettiConfig,
   INormalizedAddConfettiConfig,
+  IAddRainConfig,
+  INormalizedAddRainConfig
 }

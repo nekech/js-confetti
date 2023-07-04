@@ -1,66 +1,76 @@
 {
-  "name": "js-confetti-effects",
-  "version": "0.0.1",
-  "license": "MIT",
-  "description": "JS Confetti Effects library with zero dependencies, works without any config, TS typings included, adapts to user screen",
-  "main": "dist/js-confetti.min.js",
-  "module": "dist/es/index.js",
-  "types": "typings/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nekech/js-confetti-effects"
-  },
-  "author": "Nikolai",
-  "homepage": "https://github.com/nekech/js-confetti-effects",
-  "files": [
-    "dist",
-    "typings"
-  ],
-  "scripts": {
-    "dev": "NODE_ENV=development webpack serve --config webpack.config.site.ts",
-    "build": "rollup -c",
-    "build-site": "NODE_ENV=production webpack --config webpack.config.site.ts",
-    "lint": "eslint . --ignore-pattern node_modules/ --ext .ts --ext .tsx",
-    "lint-fix": "eslint . --ignore-pattern node_modules/ --ext .ts --ext .tsx --fix"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/plugin-transform-react-jsx": "^7.14.9",
-    "@babel/preset-env": "^7.12.7",
-    "@babel/preset-react": "^7.14.5",
-    "@babel/preset-typescript": "^7.12.7",
-    "@rollup/plugin-babel": "latest",
-    "@types/copy-webpack-plugin": "^6.4.0",
-    "@types/html-webpack-plugin": "^3.2.4",
-    "@types/node": "^14.14.28",
-    "@types/react": "^17.0.27",
-    "@types/react-dom": "^17.0.9",
-    "@types/webpack": "^4.41.26",
-    "@types/webpack-dev-server": "^3.11.1",
-    "@typescript-eslint/eslint-plugin": "^4.8.2",
-    "@typescript-eslint/parser": "^4.8.2",
-    "babel-loader": "^8.2.1",
-    "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^7.0.0",
-    "eslint": "^7.14.0",
-    "eslint-plugin-import": "^2.22.1",
-    "fork-ts-checker-webpack-plugin": "^6.1.0",
-    "html-webpack-plugin": "5.0.0-alpha.4",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "rollup": "^2.40.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.34.1",
-    "ts-loader": "^8.0.11",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.1.2",
-    "webpack": "^5.6.0",
-    "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
-  },
-  "keywords": [
-    "confetti",
-    "js-confetti-effects",
-    "rain"
-  ]
-}
+    "name": "js-confetti-effects",
+    "version": "0.0.1",
+    "license": "MIT",
+    "description": "JS Confetti Effects library with zero dependencies, works without any config, TS typings included, adapts to user screen",
+    "main": "dist/js-confetti.min.js",
+    "module": "dist/es/index.js",
+    "types": "typings/index.d.ts",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/nekech/js-confetti-effects"
+    },
+    "author": "Nikolai",
+    "homepage": "https://github.com/nekech/js-confetti-effects",
+    "files": [
+      "dist",
+      "typings"
+    ],
+    "scripts": {
+      "dev": "NODE_ENV=development webpack serve --config webpack.config.site.ts",
+      "build": "rollup -c",
+      "build-site": "NODE_ENV=production webpack --config webpack.config.site.ts",
+      "lint": "eslint . --ignore-pattern node_modules/ --ext .ts --ext .tsx",
+      "lint-fix": "eslint . --ignore-pattern node_modules/ --ext .ts --ext .tsx --fix"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.22.5",
+        "@babel/plugin-transform-react-jsx": "^7.22.5",
+        "@babel/preset-env": "^7.22.5",
+        "@babel/preset-react": "^7.22.5",
+        "@babel/preset-typescript": "^7.22.5",
+        "@rollup/plugin-babel": "^6.0.3",
+        "@types/copy-webpack-plugin": "^10.1.0",
+        "@types/html-webpack-plugin": "^3.2.6",
+        "@types/node": "^20.3.1",
+        "@types/react": "^18.2.14",
+        "@types/react-dom": "^18.2.6",
+        "@types/webpack": "^5.28.1",
+        "@types/webpack-dev-server": "^4.7.2",
+        "@typescript-eslint/eslint-plugin": "^5.60.0",
+        "@typescript-eslint/parser": "^5.60.0",
+        "babel-loader": "^9.1.2",
+        "clean-webpack-plugin": "^4.0.0",
+        "copy-webpack-plugin": "^11.0.0",
+        "eslint": "^8.43.0",
+        "eslint-plugin-import": "^2.27.5",
+        "fork-ts-checker-webpack-plugin": "^8.0.0",
+        "html-webpack-plugin": "^5.5.3",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "rollup": "^2.79.1",
+        "rollup-plugin-terser": "^7.0.2",
+        "rollup-plugin-typescript2": "^0.35.0",
+        "ts-loader": "^9.4.3",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.1.3",
+        "webpack": "^5.88.0",
+        "webpack-cli": "^5.1.4",
+        "webpack-closure-compiler": "^2.1.6",
+        "webpack-dev-server": "^4.15.1",
+        "webpack-stream": "^7.0.0"
+    },
+    "babel": {
+        "presets": [
+          "@babel/preset-env",
+          "@babel/preset-react",
+          "@babel/preset-typescript"
+        ]   
+    },
+    "keywords": [
+      "confetti",
+      "js-confetti-effects",
+      "rain"
+    ]
+  }
+  

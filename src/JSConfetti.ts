@@ -4,8 +4,8 @@ import { RainShape } from './RainShape'
 import { Shape } from './Shape'
 
 import { createCanvas } from './createCanvas'
-import { normalizeConfettiConfig } from './normalizeConfettiConfig'
-import { IPosition, IJSConfettiConfig, IAddConfettiConfig } from './types'
+import { normalizeConfettiConfig, normalizeRainConfig } from './normalizeConfettiConfig'
+import { IPosition, IJSConfettiConfig, IAddConfettiConfig, IAddRainConfig } from './types'
 
 class ConfettiBatch {
   private resolvePromise?: () => void
@@ -196,14 +196,15 @@ class JSConfetti {
     return confettiGroup.getBatchCompletePromise()
   }
 
-  public addRain(confettiConfig: IAddConfettiConfig = {}): Promise<void> {
+  public addRain(confettiConfig: IAddRainConfig = {}): Promise<void> {
     const {
       confettiRadius,
       confettiNumber,
       confettiColors,
       emojis,
       emojiSize,
-    } = normalizeConfettiConfig(confettiConfig)
+      velocityY
+    } = normalizeRainConfig(confettiConfig)
 
     console.log("Add Rain")
 
@@ -233,14 +234,15 @@ class JSConfetti {
           emojis,
           emojiSize,
           canvasWidth,
-          canvasHeight
+          canvasHeight,
+          velocityY: velocityY
         })
 
         confettiGroup.addShapes(confettiOnTheRight)
       }
     }
 
-    var delay = (canvasHeight / 7) / 1 * 10
+    var delay = (canvasHeight / 15) / velocityY * 10
 
     for (var i = 0; i < 15; i++)
     {

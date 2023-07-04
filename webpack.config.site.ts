@@ -1,12 +1,14 @@
 /* eslint-env node */
 
-import { Configuration } from 'webpack'
+import {Configuration} from 'webpack';
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
+import 'webpack-dev-server';
 
 const isProd = process.env.NODE_ENV === 'production'
+
 
 const config: Configuration = {
   mode: isProd ? 'production' : 'development',
@@ -20,7 +22,7 @@ const config: Configuration = {
       {
         test: /\.tsx?$/,
         use: 'babel-loader',
-        // use: ['babel-loader', '@babel/plugin-transform-react-jsx'],
+        //use: ['babel-loader', '@babel/plugin-transform-react-jsx'],
         exclude: /node_modules/,
       },
     ],
@@ -39,8 +41,8 @@ const config: Configuration = {
 
 if (!isProd) {
   config.devServer = {
-    contentBase: path.join(__dirname, 'site_dist'),
-    compress: true,
+    static: path.join(__dirname, 'site_dist'),
+    hot: true,
     port: 9000
   }
 }

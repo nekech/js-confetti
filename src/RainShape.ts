@@ -5,22 +5,26 @@ import { generateRandomArrayElement } from './generateRandomArrayElement'
 import {ShapeArgs, Shape} from './Shape'
 import { ROTATION_SLOWDOWN_ACCELERATION } from './consts'
 
+interface RainArgs extends ShapeArgs {
+  velocityY : number;
+}
+
 class RainShape extends Shape
 {
     private frequencyX: number;
     private amplitudeX: number;
     private velocityY: number ;
 
-    constructor(args: ShapeArgs) {
+    constructor(args: RainArgs) {
         super(args)
 
-        this.initialPosition.y =  generateRandomNumber(0, 50)
+        this.initialPosition.y =  generateRandomNumber(-10, 0)
         this.initialPosition.x = generateRandomNumber(0, args.canvasWidth)
         this.currentPosition = { ...this.initialPosition }
         this.rotationSpeed = 0.0005
         this.frequencyX = Math.random() * 0.03 + 0.02;
         this.amplitudeX = Math.random()+ 0.1;
-        this.velocityY =0.8;
+        this.velocityY = args.velocityY;
     }
     draw(canvasContext: CanvasRenderingContext2D): void {
         const {
@@ -68,10 +72,10 @@ class RainShape extends Shape
 
           this.currentPosition.y += this.velocityY + 0.4 * Math.random()
 
-          this.currentPosition.x += Math.cos(this.currentPosition.y * this.frequencyX) * this.amplitudeX + 0.2
+          this.currentPosition.x += Math.cos(this.currentPosition.y * this.frequencyX) * this.amplitudeX
 
           if (this.currentPosition.y > this.canvasHeight) {
-            this.currentPosition.y = generateRandomNumber(0, 50)
+            this.currentPosition.y = generateRandomNumber(-10, 0)
             this.currentPosition.x = generateRandomNumber(0, this.canvasWidth)
           }
 
