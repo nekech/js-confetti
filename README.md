@@ -26,7 +26,7 @@ and then access `JSConfetti` global variable
 Initialize instance of JSConfetti class and call addConfetti method
 
 ```js
-import JSConfetti from 'js-confetti'
+import JSConfetti from 'js-confetti-effects'
 
 const jsConfetti = new JSConfetti()
 
